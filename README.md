@@ -12,7 +12,7 @@ Repository to store code quality checks to help on CI validation, including Code
 
 - Please respect the content structure:
   - coderabbit
-    -  {language}
+    - {language}
       - {subpath}
         - v1 (_version is required_)
           - .coderabbit.yaml
