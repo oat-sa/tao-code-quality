@@ -1,0 +1,139 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+language: 'en-US'
+tone_instructions: give formal and direct reviews with no humour and any other distracting text, only the necessary
+reviews:
+    profile: 'assertive'
+    request_changes_workflow: true
+    auto_review:
+        enabled: true
+    poem: false
+    high_level_summary: true
+    suggested_labels: true
+    auto_apply_labels: true
+    labeling_instructions:
+        - label: '⏱️ <10 Min Review'
+          instructions: >-
+              Apply this label if the pull request modifies fewer than 50 lines across fewer than 3 files.
+
+        - label: '⏱️ 10-30 Min Review'
+          instructions: >-
+              Apply this label if the pull request modifies between 50 and 200 lines or affects 3–6 files.
+
+        - label: '⏱️ 30-60 Min Review'
+          instructions: >-
+              Apply this label if the pull request modifies more than 200 lines or touches 7–15 files.
+
+        - label: '⏱️ 60+ Min Review'
+          instructions: >-
+              Apply this label if the pull request changes more than 500 lines, affects more than 15 files, or includes architectural changes (e.g. new modules, reorganized structure).
+    path_instructions:
+        - path: '.'
+          instructions: |
+              Use the official NodeJS service template at https://github.com/oat-sa/nodejs-app-template when initializing new projects.
+              Follow the branching structure: {type}/{jira-id}/{description}
+              - Where type is one of: feat, fix, chore
+              - Example: chore/ABC-123/update-routing
+              Follow the commit message format: {type}: {Description}
+              - Examples: fix: Unit tests, chore: Update unit tests, feat: Implement new logging
+              - Where type is one of: feat, fix, chore
+              Avoid unnecessary comments in the codebase.
+              Don't use environment variables directly, declare them in the src/config/*.config.js file.
+
+        - path: 'src/**'
+          instructions: |
+              Follow the standardized folder structure:
+                - controllers/
+                - services/
+                - gateways/
+                - models/
+                - validators/
+                - middlewares/
+                - cli/
+                - config/
+              Use plural camelCase names for module folders (e.g. `users`).
+              Do not create unapproved top-level folders.
+
+        - path: '**/*.js'
+          instructions: |
+              Prevent deeply nested callbacks; use async/await or Promises with flat structure.
+              Prefer ES modules: use import syntax, avoid require; configure type: module in package.json; use .mjs for standalone modules if needed.
+              Maintain file extension consistency: .mjs for ES-only modules; .cjs for CommonJS where interoperability is required.
+              Enforce naming conventions: Classes in CamelCase; functions, methods, variables in camelCase (no abbreviations); constants in UPPER_CASE_WITH_UNDERSCORES.
+              Document all classes, methods, and functions with JSDoc; descriptions optional if names are self-explanatory.
+              Limit functions to a maximum of 4 parameters (never exceed 6); optional parameters must be last; destructure parameters where possible.
+              Controllers must delegate to services, contain no business logic, and follow Single Responsibility Principle.
+
+        - path: 'src/**/modules/*'
+          instructions: |
+              Use camelCase and plural naming for module folders (e.g. users, internalReports).
+              Mirror directory structure: controllers, services, gateways, clients, cron, middlewares, models, validators, cli.
+
+        - path: 'src/**/models/*.js'
+          instructions: |
+              Define immutable domain models/value objects.
+              Encapsulate validation and transformation logic within model classes.
+
+        - path: 'src/**/validators/*.js'
+          instructions: |
+              Use AJV or Joi for deep-object validation.
+              Define JSON schema files or Joi schemas; reference them in controllers or services.
+
+        - path: 'src/**/cli/**/*.js'
+          instructions: |
+              Place CLI scripts under src/{module}/cli, named with colon format (e.g. user:import).
+              Map npm script names in package.json under scripts.
+
+        - path: 'package.json'
+          instructions: |
+              Include in scripts at minimum: start, test, lint, prettier, prettier:check, healthcheck, and Git hooks via prepare.
+              Reference @oat-sa/prettier-config under prettier and @oat-sa/eslint-config-tao under eslintConfig.
+              Declare engines for node >=18.15.0 and npm >=9.5.0 (or node >=22 and npm >=10 for new projects).
+              Add devDependencies: sonarqube-scanner, sonarlint, ajv, joi, swagger-ui-express, vitest or jest as appropriate.
+
+        - path: 'README.md'
+          instructions: |
+              Must include: project description; installation instructions (local and production); available npm commands; environment variables table with names, descriptions, and defaults.
+              Follow common Markdown guide conventions for headings and tables.
+
+        - path: 'swagger.json'
+          instructions: |
+              Must live in the root directory.
+              Define a RESTful API schema and be exposed via an /api/docs endpoint using swagger-ui-express.
+
+        - path: 'src/**/cron/*.js'
+          instructions: |
+              Place each cron job in src/{module}/cron named as <purpose>.cron.js in camelCase.
+              Use a central manager file to import and start all jobs.
+              Extract schedules and parameters to config or environment variables.
+
+        - path: 'src/**/middlewares/*.js'
+          instructions: |
+              Store middleware in src/{module}/middlewares named <purpose>.middleware.js in camelCase.
+              Apply logging middleware first, authentication at router level, and error-handling middleware last.
+
+        - path: 'src/**/controllers/*.js'
+          instructions: |
+              Controllers must be single-responsibility delegators.
+              Document all methods in Swagger definitions.
+
+        - path: 'src/**/gateways/*.js'
+          instructions: |
+              Gateway class names must end with Gateway.
+              Store in src/{module}/gateways to encapsulate third-party contracts.
+
+        - path: 'src/**/clients/*.js'
+          instructions: |
+              Place client integrations under src/{module}/clients for external APIs or libraries.
+
+        - path: 'src/config/*.config.js'
+          instructions: |
+              Name config files <domain>.config.js and locate in src/config.
+              Use camelCase keys and load all environment variables here; no business logic.
+              Throw errors on missing mandatory configs at startup.
+
+        - path: '**/*.spec.js'
+          instructions: |
+              Co-locate tests with source files; use .spec.js suffix.
+              Use Vitest for ES modules projects; Jest for CommonJS.
+chat:
+    auto_reply: true
