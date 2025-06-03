@@ -40,15 +40,6 @@ reviews:
                 - config/
               Use plural camelCase names for module folders (e.g. `users`).
               Do not create unapproved top-level folders.
-              Use the official NodeJS service template at https://github.com/oat-sa/nodejs-app-template when initializing new projects.
-              Follow the branching structure: {type}/{jira-id}/{description}
-              - Where type is one of: feat, fix, chore
-              - Example: chore/ABC-123/update-routing
-              Follow the commit message format: {type}: {Description}
-              - Examples: fix: Unit tests, chore: Update unit tests, feat: Implement new logging
-              - Where type is one of: feat, fix, chore
-              Avoid unnecessary comments in the codebase.
-              Don't use environment variables directly, declare them in the src/config/*.config.js file.
 
         - path: '**/*.js'
           instructions: |
@@ -59,7 +50,8 @@ reviews:
               Document all classes, methods, and functions with JSDoc; descriptions optional if names are self-explanatory.
               Limit functions to a maximum of 4 parameters (never exceed 6); optional parameters must be last; destructure parameters where possible.
               Controllers must delegate to services, contain no business logic, and follow Single Responsibility Principle.
-              Don't allow comments, instead function names must be consize and have descriptive names.
+              Try to avoid comments (keep only essentials), instead use functions must be consize and have descriptive names.
+              Don't use environment variables directly, declare them in the src/config/*.config.js file.
 
         - path: 'src/**/modules/*'
           instructions: |
