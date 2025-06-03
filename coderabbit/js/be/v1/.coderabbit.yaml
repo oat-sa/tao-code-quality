@@ -13,32 +13,20 @@ reviews:
     labeling_instructions:
         - label: '⏱️ <10 Min Review'
           instructions: >-
-              Apply this label if the pull request modifies fewer than 50 lines across fewer than 3 files.
+              Apply this label if the pull request modifies fewer than 100 lines.
 
         - label: '⏱️ 10-30 Min Review'
           instructions: >-
-              Apply this label if the pull request modifies between 50 and 200 lines or affects 3–6 files.
+              Apply this label if the pull request modifies between 100 and 500.
 
         - label: '⏱️ 30-60 Min Review'
           instructions: >-
-              Apply this label if the pull request modifies more than 200 lines or touches 7–15 files.
+              Apply this label if the pull request modifies between 500 and 1000 lines.
 
         - label: '⏱️ 60+ Min Review'
           instructions: >-
-              Apply this label if the pull request changes more than 500 lines, affects more than 15 files, or includes architectural changes (e.g. new modules, reorganized structure).
+              Apply this label if the pull request changes more than 1000 lines.
     path_instructions:
-        - path: '.'
-          instructions: |
-              Use the official NodeJS service template at https://github.com/oat-sa/nodejs-app-template when initializing new projects.
-              Follow the branching structure: {type}/{jira-id}/{description}
-              - Where type is one of: feat, fix, chore
-              - Example: chore/ABC-123/update-routing
-              Follow the commit message format: {type}: {Description}
-              - Examples: fix: Unit tests, chore: Update unit tests, feat: Implement new logging
-              - Where type is one of: feat, fix, chore
-              Avoid unnecessary comments in the codebase.
-              Don't use environment variables directly, declare them in the src/config/*.config.js file.
-
         - path: 'src/**'
           instructions: |
               Follow the standardized folder structure:
@@ -52,6 +40,15 @@ reviews:
                 - config/
               Use plural camelCase names for module folders (e.g. `users`).
               Do not create unapproved top-level folders.
+              Use the official NodeJS service template at https://github.com/oat-sa/nodejs-app-template when initializing new projects.
+              Follow the branching structure: {type}/{jira-id}/{description}
+              - Where type is one of: feat, fix, chore
+              - Example: chore/ABC-123/update-routing
+              Follow the commit message format: {type}: {Description}
+              - Examples: fix: Unit tests, chore: Update unit tests, feat: Implement new logging
+              - Where type is one of: feat, fix, chore
+              Avoid unnecessary comments in the codebase.
+              Don't use environment variables directly, declare them in the src/config/*.config.js file.
 
         - path: '**/*.js'
           instructions: |
@@ -62,6 +59,7 @@ reviews:
               Document all classes, methods, and functions with JSDoc; descriptions optional if names are self-explanatory.
               Limit functions to a maximum of 4 parameters (never exceed 6); optional parameters must be last; destructure parameters where possible.
               Controllers must delegate to services, contain no business logic, and follow Single Responsibility Principle.
+              Don't allow comments, instead function names must be consize and have descriptive names.
 
         - path: 'src/**/modules/*'
           instructions: |
