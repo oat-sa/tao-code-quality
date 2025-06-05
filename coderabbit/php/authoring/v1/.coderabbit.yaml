@@ -44,9 +44,6 @@ reviews:
                 - tests/
                 - views/
                 - .github
-                - .github
-                - .github
-                - .github
 
         - path: '*.php'
           instructions: |
@@ -67,5 +64,9 @@ reviews:
               All the extension definition should be done here
               All ACL roles must be defined here
               All DependencyInjection ServiceProviders should be declared here
+              
+        - path: '.github'
+          instructions: |
+              This directory must contain YAML files for git actions
 chat:
     auto_reply: true
