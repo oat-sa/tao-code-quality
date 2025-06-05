@@ -53,6 +53,8 @@ reviews:
               Try to avoid comments (keep only essentials)
               Functions must be consize and have descriptive names.
               Don't use environment variables directly, declare them in the src/config/*.config.js file.
+              All code should follow DRY and SOLID principles
+              All code should follow development best practices
 
         - path: 'src/**/modules/*'
           instructions: |
