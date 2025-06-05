@@ -30,7 +30,7 @@ To use shared configuration, you need to:
 
 ```yaml
 remote_config:
-  url: "https://raw.githubusercontent.com/oat-sa/tao-code-quality/refs/heads/main/coderabbit/js/be/v1/.coderabbit.yaml"
+  url: "https://raw.githubusercontent.com/oat-sa/tao-code-quality/main/coderabbit/php/authoring/v1/.coderabbit.yaml"
 ```
 
 *_In this example, we are pointing to a config for a JS and BE standards, as per `js/be/v1/.coderabbit.yaml` 
