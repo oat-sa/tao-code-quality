@@ -37,7 +37,7 @@ reviews:
               Document all classes, methods, and functions with JSDoc; descriptions optional if names are self-explanatory.
               Limit functions to a maximum of 4 parameters (never exceed 6); optional parameters must be last; destructure parameters where possible.
               Controllers must delegate to services, contain no business logic, and follow Single Responsibility Principle.
-              Try to avoid comments (keep only essentials).
+              Minimise inline comments; rely on clear naming and required JSDoc for documentation.
               Classes, Functions and Methods must be concise and have descriptive names.
               Code should follow DRY and SOLID principles.
               Code should follow development best practices.

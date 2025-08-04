@@ -61,17 +61,17 @@ reviews:
               Use camelCase and plural naming for module folders (e.g. users, internalReports).
               Mirror directory structure: controllers, services, gateways, clients, cron, middlewares, models, validators, cli.
 
-        - path: 'src/**/models/*.js'
+        - path: 'src/**/models/*.ts'
           instructions: |
               Define immutable domain models/value objects.
               Encapsulate validation and transformation logic within model classes.
 
-        - path: 'src/**/validators/*.js'
+        - path: 'src/**/validators/*.ts'
           instructions: |
               Use AJV or Joi for deep-object validation.
               Define JSON schema files or Joi schemas; reference them in controllers or services.
 
-        - path: 'src/**/cli/**/*.js'
+        - path: 'src/**/cli/**/*.ts'
           instructions: |
               Place CLI scripts under src/{module}/cli, named with colon format (e.g. user:import).
               Map npm script names in package.json under scripts.
@@ -93,40 +93,40 @@ reviews:
               Must live in the root directory.
               Define a RESTful API schema and be exposed via an /api/docs endpoint using swagger-ui-express.
 
-        - path: 'src/**/cron/*.js'
+        - path: 'src/**/cron/*.ts'
           instructions: |
-              Place each cron job in src/{module}/cron named as <purpose>.cron.js in camelCase.
+              Place each cron job in src/{module}/cron named as <purpose>.cron.ts in camelCase.
               Use a central manager file to import and start all jobs.
               Extract schedules and parameters to config or environment variables.
 
-        - path: 'src/**/middlewares/*.js'
+        - path: 'src/**/middlewares/*.ts'
           instructions: |
-              Store middleware in src/{module}/middlewares named <purpose>.middleware.js in camelCase.
+              Store middleware in src/{module}/middlewares named <purpose>.middleware.ts in camelCase.
               Apply logging middleware first, authentication at router level, and error-handling middleware last.
 
-        - path: 'src/**/controllers/*.js'
+        - path: 'src/**/controllers/*.ts'
           instructions: |
               Controllers must be single-responsibility delegators.
               Document all methods in Swagger definitions.
 
-        - path: 'src/**/gateways/*.js'
+        - path: 'src/**/gateways/*.ts'
           instructions: |
               Gateway class names must end with Gateway.
               Store in src/{module}/gateways to encapsulate third-party contracts.
 
-        - path: 'src/**/clients/*.js'
+        - path: 'src/**/clients/*.ts'
           instructions: |
               Place client integrations under src/{module}/clients for external APIs or libraries.
 
-        - path: 'src/config/*.config.js'
+        - path: 'src/config/*.config.ts'
           instructions: |
-              Name config files <domain>.config.js and locate in src/config.
+              Name config files <domain>.config.ts and locate in src/config.
               Use camelCase keys and load all environment variables here; no business logic.
               Throw errors on missing mandatory configs at startup.
 
-        - path: '**/*.spec.js'
+        - path: '**/*.spec.ts'
           instructions: |
-              Co-locate tests with source files; use .spec.js suffix.
+              Co-locate tests with source files; use .spec.ts suffix.
               Use Vitest for ES modules projects; Jest for CommonJS.
 chat:
     auto_reply: true
