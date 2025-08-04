@@ -1,0 +1,30 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+language: 'en-US'
+tone_instructions: give formal and direct reviews with no humour and any other distracting text, only the necessary
+reviews:
+    profile: 'assertive'
+    request_changes_workflow: true
+    auto_review:
+        enabled: true
+    poem: false
+    high_level_summary: true
+    suggested_labels: true
+    auto_apply_labels: true
+    labeling_instructions:
+        - label: '⏱️ <10 Min Review'
+          instructions: >-
+              Apply this label if the pull request modifies fewer than 100 lines.
+
+        - label: '⏱️ 10-30 Min Review'
+          instructions: >-
+              Apply this label if the pull request modifies between 100 and 500.
+
+        - label: '⏱️ 30-60 Min Review'
+          instructions: >-
+              Apply this label if the pull request modifies between 500 and 1000 lines.
+
+        - label: '⏱️ 60+ Min Review'
+          instructions: >-
+              Apply this label if the pull request changes more than 1000 lines.
+chat:
+    auto_reply: true
