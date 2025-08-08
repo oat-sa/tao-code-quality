@@ -17,7 +17,7 @@ reviews:
 
         - label: '⏱️ 10-30 Min Review'
           instructions: >-
-              Apply this label if the pull request modifies between 100 and 500.
+              Apply this label if the pull request modifies between 100 and 500 lines.
 
         - label: '⏱️ 30-60 Min Review'
           instructions: >-
