@@ -17,7 +17,7 @@ reviews:
 
         - label: '⏱️ 10-30 Min Review'
           instructions: >-
-              Apply this label if the pull request modifies between 100 and 500.
+              Apply this label if the pull request modifies between 100 and 500 lines.
 
         - label: '⏱️ 30-60 Min Review'
           instructions: >-
@@ -26,20 +26,32 @@ reviews:
         - label: '⏱️ 60+ Min Review'
           instructions: >-
               Apply this label if the pull request changes more than 1000 lines.
-              
+    path_filters:
+        - '!**/*.{pot,po}'
     path_instructions:
         - path: '**/*.js'
           instructions: |
+              Prefer ES modules: use import syntax, avoid require; configure type: module in package.json.
+              Controllers must delegate to services, contain no business logic, and follow Single Responsibility Principle.
+
+        - path: '**/*.{js,svelte}'
+          instructions: |
               Prevent deeply nested callbacks; use async/await or Promises with flat structure.
-              Prefer ES modules: use import syntax, avoid require; configure type: module in package.json; use .mjs for standalone modules if needed.
-              Maintain file extension consistency: .mjs for ES-only modules; .cjs for CommonJS where interoperability is required.
               Enforce naming conventions: Classes in CamelCase; functions, methods, variables in camelCase (no abbreviations); constants in UPPER_CASE_WITH_UNDERSCORES.
               Document all classes, methods, and functions with JSDoc; descriptions optional if names are self-explanatory.
               Limit functions to a maximum of 4 parameters (never exceed 6); optional parameters must be last; destructure parameters where possible.
-              Controllers must delegate to services, contain no business logic, and follow Single Responsibility Principle.
               Minimise inline comments; rely on clear naming and required JSDoc for documentation.
               Classes, Functions and Methods must be concise and have descriptive names.
-              Code should follow DRY and SOLID principles.
+              Code should follow DRY principle, and composition over inheritance.
               Code should follow development best practices.
+
+        - path: '**/*.svelte'
+          instructions: |
+              Avoid very long Svelte components; prefer splitting parts of the template or business logic into subcomponents.
+              Avoid complex Javascript expressions within the template; prefer for complex expressions to be assigned to variables in the script before using in template.
+              Avoid overuse of $ reactive statements in Svelte 3 & 4 codebases.
+              Document the prop types of components using a single JSDoc block, apart from trivial cases.
+              In the <style> block, use nesting as much as possible to scope styles within the root template element's selector, and reduce duplication.
+              In the <style> block, avoid writing selectors for elements which don't exist in the template; wrapping those selectors with :global() is acceptable.
 chat:
     auto_reply: true
