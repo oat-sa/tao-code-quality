@@ -26,7 +26,8 @@ reviews:
         - label: '⏱️ 60+ Min Review'
           instructions: >-
               Apply this label if the pull request changes more than 1000 lines.
-              
+    path_filters:
+        - '!**/*.{pot,po}'
     path_instructions:
         - path: '**/*.js'
           instructions: |
