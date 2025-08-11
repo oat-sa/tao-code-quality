@@ -1,0 +1,57 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+language: 'en-US'
+tone_instructions: give formal and direct reviews with no humour and any other distracting text, only the necessary
+reviews:
+    profile: 'assertive'
+    request_changes_workflow: true
+    auto_review:
+        enabled: true
+    poem: false
+    high_level_summary: true
+    suggested_labels: true
+    auto_apply_labels: true
+    labeling_instructions:
+        - label: '⏱️ <10 Min Review'
+          instructions: >-
+              Apply this label if the pull request modifies fewer than 100 lines in the src folder.
+
+        - label: '⏱️ 10-30 Min Review'
+          instructions: >-
+              Apply this label if the pull request modifies between 100 and 500 lines in the src folder.
+
+        - label: '⏱️ 30-60 Min Review'
+          instructions: >-
+              Apply this label if the pull request modifies between 500 and 1000 lines in the src folder.
+
+        - label: '⏱️ 60+ Min Review'
+          instructions: >-
+              Apply this label if the pull request changes more than 1000 lines in the src folder.
+
+    path_instructions:
+        - path: '**/*.py'
+          instructions: |
+            Prioritize readability over cleverness—follow PEP 20 (The Zen of Python).
+            Ensure all code adheres to PEP 8 and is automatically formatted using Ruff.
+            Line length must not exceed 100 characters.
+            Use f-strings for string formatting and include type hints throughout the code.
+            Always use `with` statements when working with files or resources.
+            Prefer `pathlib` over `os.path`, and use `click` or `typer` instead of `argparse` or `sys.argv`.
+            Avoid using `print()`; use structured logging instead (e.g., `loguru`, JSON format preferred).
+            Do not hardcode configuration values.
+            Do not log or expose sensitive or personally identifiable information.
+            Use meaningful and consistent naming conventions.
+            Ensure each module or function has a single responsibility and is logically organized.
+            Eliminate duplicated logic by abstracting common functionality into utilities.
+            Follow the project's defined dependency hierarchy to avoid cyclic imports.
+            Use `__init__.py` for clean exports via `__all__`.
+            Avoid indirect imports; use fully qualified paths for sibling module access.
+            File and folder names must follow `snake_case`.
+            Include Google-style docstrings for all public functions and methods, with Args, Returns, Raises, and Examples when applicable.
+            Use precise type annotations for all function arguments and return types.
+            Update project documentation (README, references) when adding or modifying functionality.
+            Add unit or integration tests for new or updated logic in the `tests/` directory, mirroring the source structure.
+            Test files must follow the `test_<module>.py` naming pattern.
+            Mock external services or dependencies.
+
+chat:
+    auto_reply: true
