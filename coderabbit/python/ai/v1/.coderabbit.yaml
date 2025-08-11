@@ -28,11 +28,10 @@ reviews:
               Apply this label if the pull request changes more than 1000 lines in the src folder.
 
     path_instructions:
-        - path: '**/*.py'
+        - path: 'src/**/*.py'
           instructions: |
             Prioritize readability over cleverness—follow PEP 20 (The Zen of Python).
-            Ensure all code adheres to PEP 8 and is automatically formatted using Ruff.
-            Line length must not exceed 100 characters.
+            Ensure all code adheres to PEP 8.
             Use f-strings for string formatting and include type hints throughout the code.
             Always use `with` statements when working with files or resources.
             Prefer `pathlib` over `os.path`, and use `click` or `typer` instead of `argparse` or `sys.argv`.
@@ -50,6 +49,11 @@ reviews:
             Use precise type annotations for all function arguments and return types.
             Update project documentation (README, references) when adding or modifying functionality.
             Add unit or integration tests for new or updated logic in the `tests/` directory, mirroring the source structure.
+        - path: 'test/**/*.py'
+          instructions: |
+            Always use `with` statements when working with files or resources.
+            File and folder names must follow `snake_case`.
+            Tests in the `tests/` directory must mirror the source structure.
             Test files must follow the `test_<module>.py` naming pattern.
             Mock external services or dependencies.
 
