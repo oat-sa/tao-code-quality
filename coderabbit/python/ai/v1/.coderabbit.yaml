@@ -58,6 +58,8 @@ reviews:
               Tests files must mirror the source structure.
               Test files must follow the `test_<module>.py` naming pattern.
               Mock external services or dependencies.
+              Annotations and type hints are not needed in test files.
+              Code duplication in tests is accepted when it serves idempotency.
 
 chat:
     auto_reply: true
