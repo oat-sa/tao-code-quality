@@ -53,7 +53,7 @@ reviews:
               Use `__init__.py` for clean exports via `__all__`.
               Use precise type annotations for all function arguments and return types.
               Add unit or integration tests for new or updated logic in the `tests/` directory, mirroring the source structure.
-        - path: 'test/**/*.py'
+        - path: 'tests/**/*.py'
           instructions: |
               Tests files must mirror the source structure.
               Test files must follow the `test_<module>.py` naming pattern.
