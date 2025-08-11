@@ -28,34 +28,36 @@ reviews:
               Apply this label if the pull request changes more than 1000 lines in the src folder.
 
     path_instructions:
+        - path: '**/*.py'
+          instructions: |
+              Prioritize readability over cleverness—follow PEP 20 (The Zen of Python).
+              Ensure all code adheres to PEP 8.
+              Use f-strings for string formatting and include type hints throughout the code.
+              Always use `with` statements when working with files or resources.
+              Prefer `pathlib` over `os.path`, and use `click` or `typer` instead of `argparse` or `sys.argv`.
+              Avoid using `print()`; use structured logging instead (e.g., `loguru`, JSON format preferred).
+              Do not hardcode configuration values.
+              Do not log or expose sensitive or personally identifiable information.
+              Use meaningful and consistent naming conventions.
+              Ensure each module or function has a single responsibility and is logically organized.
+              Eliminate duplicated logic by abstracting common functionality into utilities.
+              Follow the project's defined dependency hierarchy to avoid cyclic imports.
+              Avoid indirect imports; use fully qualified paths for sibling module access.
+              File and folder names must follow `snake_case`.
+              Include Google-style docstrings for all public functions and methods, with Args, Returns, Raises, and Examples when applicable.
+              Update project documentation (README, references) when adding or modifying functionality.
+              Code should follow DRY, KISS, and SOLID principles.
+              Code should follow development best practices.
         - path: 'src/**/*.py'
           instructions: |
-            Prioritize readability over cleverness—follow PEP 20 (The Zen of Python).
-            Ensure all code adheres to PEP 8.
-            Use f-strings for string formatting and include type hints throughout the code.
-            Always use `with` statements when working with files or resources.
-            Prefer `pathlib` over `os.path`, and use `click` or `typer` instead of `argparse` or `sys.argv`.
-            Avoid using `print()`; use structured logging instead (e.g., `loguru`, JSON format preferred).
-            Do not hardcode configuration values.
-            Do not log or expose sensitive or personally identifiable information.
-            Use meaningful and consistent naming conventions.
-            Ensure each module or function has a single responsibility and is logically organized.
-            Eliminate duplicated logic by abstracting common functionality into utilities.
-            Follow the project's defined dependency hierarchy to avoid cyclic imports.
-            Use `__init__.py` for clean exports via `__all__`.
-            Avoid indirect imports; use fully qualified paths for sibling module access.
-            File and folder names must follow `snake_case`.
-            Include Google-style docstrings for all public functions and methods, with Args, Returns, Raises, and Examples when applicable.
-            Use precise type annotations for all function arguments and return types.
-            Update project documentation (README, references) when adding or modifying functionality.
-            Add unit or integration tests for new or updated logic in the `tests/` directory, mirroring the source structure.
+              Use `__init__.py` for clean exports via `__all__`.
+              Use precise type annotations for all function arguments and return types.
+              Add unit or integration tests for new or updated logic in the `tests/` directory, mirroring the source structure.
         - path: 'test/**/*.py'
           instructions: |
-            Always use `with` statements when working with files or resources.
-            File and folder names must follow `snake_case`.
-            Tests in the `tests/` directory must mirror the source structure.
-            Test files must follow the `test_<module>.py` naming pattern.
-            Mock external services or dependencies.
+              Tests files must mirror the source structure.
+              Test files must follow the `test_<module>.py` naming pattern.
+              Mock external services or dependencies.
 
 chat:
     auto_reply: true
