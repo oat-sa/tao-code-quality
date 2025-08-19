@@ -2,71 +2,145 @@
 language: 'en-US'
 tone_instructions: give formal and direct reviews with no humour and any other distracting text, only the necessary
 reviews:
-    profile: 'assertive'
-    request_changes_workflow: true
-    auto_review:
-        enabled: true
-    poem: false
-    high_level_summary: true
-    suggested_labels: true
-    auto_apply_labels: true
-    labeling_instructions:
-        - label: '⏱️ <10 Min Review'
-          instructions: >-
-              Apply this label if the pull request modifies fewer than 100 lines.
+  profile: 'assertive'
+  request_changes_workflow: true
+  auto_review:
+    enabled: true
+  poem: false
+  high_level_summary: true
+  suggested_labels: true
+  auto_apply_labels: true
+  labeling_instructions:
+    - label: '⏱️ <10 Min Review'
+      instructions: Apply for PRs with <200 lines changed
+    - label: '⏱️ 10-30 Min Review'
+      instructions: Apply for PRs with 200-1000 lines changed
+    - label: '⏱️ 30-60 Min Review'
+      instructions: Apply for PRs with 1000-2000 lines changed
+    - label: '⏱️ 60+ Min Review'
+      instructions: Apply for PRs with >2000 lines changed
+  path_instructions:
+    - path: '**'
+      instructions: |
+        ## General Project Standards
+        ### Security & Performance
+        - Implement proper input validation and sanitization.
+        - Use parameterized queries to prevent SQL injection.
+        - Follow the principle of least privilege for user permissions.
+        - Implement proper caching strategies and database indexes.
+        - Use background jobs for time-consuming operations.
+        
+        ### Testing Standards
+        - All new code MUST include appropriate unit tests.
+        - Tests MUST cover both positive and negative scenarios.
+        - Tests MUST be isolated and not depend on external systems.
+        - Use proper test fixtures and data builders.
 
-        - label: '⏱️ 10-30 Min Review'
-          instructions: >-
-              Apply this label if the pull request modifies between 100 and 500.
+    - path: './'
+      instructions: |
+        ## TAO Authoring Extension Folder Structure Standards
+        
+        ### Required Folder Structure
+        Use camelCase and plural naming for module folders (e.g. users, internalReports).
+        Follow the standardized folder structure - MUST allow only these folders:
+          - actions/ - Legacy controller actions (deprecated, use controller/ instead)
+          - controller/ - Modern PSR-4 controllers and API endpoints  
+          - config/ - Configuration files and service definitions
+          - includes/ - Bootstrap files, constants, and global helpers
+          - locales/ - Translation files (PO/RDF format)
+          - helpers/ - Utility classes and helper functions
+          - install/ - Installation scripts and database setup
+          - migrations/ - Database schema migrations (Doctrine DBAL)
+          - models/ - Domain models, services, and business logic
+          - scripts/ - CLI scripts and maintenance tools
+          - tests/ - Unit and integration tests
+          - views/ - Templates, CSS, JavaScript, and frontend assets
+          - .github/ - GitHub Actions workflow files
+          - manifest.php - Extension definition file (required)
+        
+        ### Folder Usage Guidelines
+        - Use controller/ for new development; actions/ is for legacy compatibility only.
+        - Place all business logic in the models/ directory.
+        - Configuration must be in config/ with proper service provider registration.
+        - All database changes must use migrations/ with proper versioning.
+        - Helpers should be stateless utility classes.
+        - Frontend assets must be organized under views/ with a proper build process.
 
-        - label: '⏱️ 30-60 Min Review'
-          instructions: >-
-              Apply this label if the pull request modifies between 500 and 1000 lines.
+    - path: '**/*.php'
+      instructions: |
+        ## General PHP Standards
+        
+        ### Code Quality & Design
+        - All PHP code MUST follow PSR-12 coding standards.
+        - Follow DRY and SOLID design principles.
+        - All classes MUST have proper namespace declarations.
+        - Use dependency injection over static methods and singletons.
+        
+        ### Documentation
+        - Write self-documenting code with meaningful variable and method names.
+        - All classes MUST have DocBlock headers with license information.
+        - All public methods MUST have proper @param and @return annotations.
+        
+        ### Type System & Error Handling
+        - Use strict types `declare(strict_types=1);` in all PHP files.
+        - Use scalar and return type declarations consistently.
+        - Use structured exception handling with appropriate exception types.
+        - Provide user-friendly error messages in the UI and implement fallback mechanisms.
+        
+        ### Dependencies
+        - Use Composer for PHP dependency management.
+        - Monitor security vulnerabilities and keep dependencies updated.
+        - Avoid unnecessary dependencies and prefer stable packages.
 
-        - label: '⏱️ 60+ Min Review'
-          instructions: >-
-              Apply this label if the pull request changes more than 1000 lines.
-    path_instructions:
-        - path: './'
-          instructions: |
-              Use camelCase and plural naming for module folders (e.g. users, internalReports).
-              Follow the standardized folder structure MUST allow only those folders:
-                - actions/
-                - controller/
-                - config/
-                - includes/
-                - locales/
-                - helpers/
-                - install/
-                - models/
-                - scripts/
-                - test/
-                - tests/
-                - views/
-                - .github
+    - path: '{controller,actions}/*.php'
+      instructions: |
+        ## Controller/Action Standards
+        - Controllers and Actions MUST contain only presentation logic.
+        - Delegate all business logic to services in the models/ directory.
+        - Validate all input parameters and use proper HTTP status codes for responses.
+        - Controllers MUST extend appropriate base classes (e.g., CommonRestModule).
+        - For REST controllers, implement CRUD operations with OpenAPI annotations.
+        - Actions are LEGACY; prefer controllers/ for new development.
 
-        - path: '*.php'
-          instructions: |
-              All PHP code should follow PHP PSR-12 standards
-              All PHP code should follow DRY and SOLID principles
-              All PHP code should follow best practices
+    - path: '**/migrations/*.php'
+      instructions: |
+        ## Migration Standards
+        - Use the format: VersionYYYYMMDDHHMMSSNNNN_ExtensionName.php.
+        - Extend AbstractMigration with the namespace `oat\ExtensionName\migrations`.
+        - Implement `getDescription()`, `up()`, and `down()` methods with `declare(strict_types=1)`.
+        - Keep migrations atomic and reversible. Use the Schema object for all changes.
+        - Add `Report::createSuccess/Info/Error` status reporting within the migration.
 
-        - path: '/controller/*.php'
-          instructions: |
-              Files here MUST contain only controller logic and we SHOULD avoid add business logic here, but rather delegate it to services
+    - path: 'manifest.php'
+      instructions: |
+        ## Manifest Standards
+        - The manifest MUST contain a complete extension definition: name, label, description, GPL-2.0 license, and author.
+        - All required sections MUST be present: models, install, acl, routes, constants, containerServiceProviders.
+        - ServiceProviders MUST implement ServiceLocatorAwareInterface.
+        - Define ACL roles with proper inheritance using TaoRoles constants, following the principle of least privilege.
 
-        - path: '/actions/*.php'
-          instructions: |
-              Files here MUST contain only controller logic and we SHOULD avoid add business logic here, but rather delegate it to services
-              
-        - path: 'manifest.php'
-          instructions: |
-              All the extension definition should be done here
-              All ACL roles must be defined here
-              All DependencyInjection ServiceProviders should be declared here
-              
-        - path: '.github'
-          instructions: |
-              This directory must contain YAML files for git actions
+    - path: '{models,config}/*.php'
+      instructions: |
+        ## Models & Config Standards
+        - Models: Organize by domain, use proper namespaces, and define interfaces for services.
+        - Services MUST be stateless, thread-safe, and contain all business logic.
+        - Config: Use associative arrays and separate environment-specific settings.
+        - Register services in the container with their corresponding interfaces, using factory patterns where appropriate.
+        - Adhere strictly to the Single Responsibility Principle and Dependency Injection.
+
+    - path: '{.github/*.yml,helpers/*.php,scripts/*.php,install/*.php}'
+      instructions: |
+        ## Utility Files Standards
+        - GitHub Actions: Define CI/CD workflows with security scanning and consistent naming conventions.
+        - Helpers: Implement as stateless utility classes with pure functions, avoiding global state.
+        - Scripts: Extend base classes, implement argument parsing, and provide help text.
+        - Install Scripts: Ensure scripts are idempotent, perform system validation, and support rollback.
+
+    - path: '{tests/**/*.php,locales/*,views/**}'
+      instructions: |
+        ## Tests, Locales & Views Standards
+        - Tests: Write unit tests for all new code. Tests must be isolated and cover both positive and negative scenarios. `tests/` is the required directory name.
+        - Locales: Support PO/RDF formats. Use consistent, meaningful message keys/IDs.
+        - Views: Use semantic HTML, ensure responsive design (WCAG 2.1 compliance), and optimize assets with a Content Security Policy (CSP).
 chat:
-    auto_reply: true
+  auto_reply: true
