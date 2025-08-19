@@ -80,13 +80,13 @@ reviews:
         - Write self-documenting code with meaningful variable and method names.
         - All classes MUST have DocBlock headers with license information.
         - All public methods MUST have proper @param and @return annotations.
-
+        
         ### Type System & Error Handling
         - Use strict types `declare(strict_types=1);` in all PHP files.
         - Use scalar and return type declarations consistently.
         - Use structured exception handling with appropriate exception types.
         - Provide user-friendly error messages in the UI and implement fallback mechanisms.
-
+        
         ### Dependencies
         - Use Composer for PHP dependency management.
         - Monitor security vulnerabilities and keep dependencies updated.

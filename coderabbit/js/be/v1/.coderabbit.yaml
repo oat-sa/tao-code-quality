@@ -19,88 +19,88 @@ reviews:
       instructions: Apply for PRs with 1000-2000 lines changed
     - label: '⏱️ 60+ Min Review'
       instructions: Apply for PRs with >2000 lines changed
-path_instructions:
-  - path: '**'
-    instructions: |
-      ## General Project Standards
-      ### Security & Performance
-      - Implement proper input validation and sanitization.
-      - Use parameterized queries or an ORM to prevent injection attacks.
-      - Follow the principle of least privilege for user permissions.
-      - Implement proper caching strategies and database indexes.
-      - Use background jobs or worker threads for time-consuming operations.
-      
-      ### Quality & Documentation
-      - Follow DRY (Don't Repeat Yourself) and SOLID design principles.
-      - Keep API documentation (e.g., OpenAPI/Swagger) up to date.
+  path_instructions:
+    - path: '**'
+      instructions: |
+        ## General Project Standards
+        ### Security & Performance
+        - Implement proper input validation and sanitization.
+        - Use parameterized queries or an ORM to prevent injection attacks.
+        - Follow the principle of least privilege for user permissions.
+        - Implement proper caching strategies and database indexes.
+        - Use background jobs or worker threads for time-consuming operations.
+        
+        ### Quality & Documentation
+        - Follow DRY (Don't Repeat Yourself) and SOLID design principles.
+        - Keep API documentation (e.g., OpenAPI/Swagger) up to date.
 
-  - path: 'src/**'
-    instructions: |
-      ## Project & Folder Structure
-      - The project MUST adhere to the structure defined in the template: https://github.com/oat-sa/nodejs-template.
-      - Standard folders include: controllers/, services/, gateways/, models/, validators/, middlewares/, cli/, config/, repositories/, factories/, workers/.
-      - Use plural camelCase for module folders (e.g., `users`, `internalReports`). `common` is an allowed singular name.
-      - Mirror the modular structure across different domains to ensure a clear separation of concerns.
+    - path: 'src/**'
+      instructions: |
+        ## Project & Folder Structure
+        - The project MUST adhere to the structure defined in the template: https://github.com/oat-sa/nodejs-template.
+        - Standard folders include: controllers/, services/, gateways/, models/, validators/, middlewares/, cli/, config/, repositories/, factories/, workers/.
+        - Use plural camelCase for module folders (e.g., `users`, `internalReports`). `common` is an allowed singular name.
+        - Mirror the modular structure across different domains to ensure a clear separation of concerns.
 
-  - path: '**/*.js'
-    instructions: |
-      ## General JavaScript Standards
-      ### Naming Conventions & Code Style
-      - Class names MUST use UpperCamelCase.
-      - Functions, methods, and variables MUST use lowerCamelCase. Avoid abbreviations (e.g., `userCount` instead of `uCount`).
-      - Constants MUST use `UPPER_CASE_WITH_UNDERSCORE`.
-      - Environment variables MUST be accessed only via the config module (`src/config/{domain}.config.js`).
-      
-      ### Functions & Modules
-      - Use ES modules (`import`/`export`) syntax. The `package.json` file MUST be configured with `"type": "module"`.
-      - Functions should have a maximum of 4 parameters and MUST never exceed 6.
-      - Use object destructuring for function parameters with multiple optional values.
-      - Prefer `async/await` for all asynchronous operations.
-      
-      ### Documentation
-      - Write self-documenting code with meaningful names.
-      - All public classes, methods, and functions MUST be documented with JSDoc.
-      - Complex business logic MUST have inline comments explaining the "why," not the "what."
+    - path: '**/*.js'
+      instructions: |
+        ## General JavaScript Standards
+        ### Naming Conventions & Code Style
+        - Class names MUST use UpperCamelCase.
+        - Functions, methods, and variables MUST use lowerCamelCase. Avoid abbreviations (e.g., `userCount` instead of `uCount`).
+        - Constants MUST use `UPPER_CASE_WITH_UNDERSCORE`.
+        - Environment variables MUST be accessed only via the config module (`src/config/{domain}.config.js`).
+        
+        ### Functions & Modules
+        - Use ES modules (`import`/`export`) syntax. The `package.json` file MUST be configured with `"type": "module"`.
+        - Functions should have a maximum of 4 parameters and MUST never exceed 6.
+        - Use object destructuring for function parameters with multiple optional values.
+        - Prefer `async/await` for all asynchronous operations.
+        
+        ### Documentation
+        - Write self-documenting code with meaningful names.
+        - All public classes, methods, and functions MUST be documented with JSDoc.
+        - Complex business logic MUST have inline comments explaining the "why," not the "what."
 
-  - path: '**/*.spec.js'
-    instructions: |
-      ## Testing Standards
-      - All new code MUST include appropriate unit tests.
-      - Tests MUST be co-located with their source files, using the `.spec.js` suffix (e.g., `users.service.js` and `users.service.spec.js`).
-      - Use Vitest for ES module-based projects or Jest for CommonJS.
-      - Tests MUST cover both positive and negative scenarios (happy path and edge cases).
-      - Tests MUST be isolated and not depend on external systems like databases or live APIs. Use mocks and stubs.
+    - path: '**/*.spec.js'
+      instructions: |
+        ## Testing Standards
+        - All new code MUST include appropriate unit tests.
+        - Tests MUST be co-located with their source files, using the `.spec.js` suffix (e.g., `users.service.js` and `users.service.spec.js`).
+        - Use Vitest for ES module-based projects or Jest for CommonJS.
+        - Tests MUST cover both positive and negative scenarios (happy path and edge cases).
+        - Tests MUST be isolated and not depend on external systems like databases or live APIs. Use mocks and stubs.
 
-  - path: '{src/**/models/*.js,src/**/validators/*.js}'
-    instructions: |
-      ## Models & Validators
-      - **Models**: Implement as immutable domain models or value objects with encapsulated validation logic.
-      - **Validators**: Use a robust validation library like AJV or Joi. Define reusable JSON schemas for all input DTOs.
+    - path: '{src/**/models/*.js,src/**/validators/*.js}'
+      instructions: |
+        ## Models & Validators
+        - **Models**: Implement as immutable domain models or value objects with encapsulated validation logic.
+        - **Validators**: Use a robust validation library like AJV or Joi. Define reusable JSON schemas for all input DTOs.
 
-  - path: 'src/**/{cron,middlewares,controllers,gateways,clients,repositories,factories,workers}/**/*.js'
-    instructions: |
-      ## Application Component Standards
-      - **Cron**: Name files `<purpose>.cron.js`. Centralize job management and extract schedules to configuration files.
-      - **Middlewares**: Name files `<purpose>.middleware.js`. The logging middleware MUST run first, and the error-handling middleware MUST be the last one in the chain.
-      - **Controllers**: Act as single-responsibility delegators to services; they MUST NOT contain business logic. Document all endpoints in Swagger.
-      - **Gateways**: Class names MUST end with "Gateway". They encapsulate contracts with third-party services.
-      - **Repositories**: Encapsulate all data access logic (e.g., database queries) and remain separate from business logic.
-      - **Factories**: Use factory patterns for complex object instantiation.
-      - **Workers**: Isolate logic for background processing, data migration, or other system tasks.
+    - path: 'src/**/{cron,middlewares,controllers,gateways,clients,repositories,factories,workers}/**/*.js'
+      instructions: |
+        ## Application Component Standards
+        - **Cron**: Name files `<purpose>.cron.js`. Centralize job management and extract schedules to configuration files.
+        - **Middlewares**: Name files `<purpose>.middleware.js`. The logging middleware MUST run first, and the error-handling middleware MUST be the last one in the chain.
+        - **Controllers**: Act as single-responsibility delegators to services; they MUST NOT contain business logic. Document all endpoints in Swagger.
+        - **Gateways**: Class names MUST end with "Gateway". They encapsulate contracts with third-party services.
+        - **Repositories**: Encapsulate all data access logic (e.g., database queries) and remain separate from business logic.
+        - **Factories**: Use factory patterns for complex object instantiation.
+        - **Workers**: Isolate logic for background processing, data migration, or other system tasks.
 
-  - path: 'src/config/**/*.config.js'
-    instructions: |
-      ## Configuration Standards
-      - Configuration files MUST be located in `src/config/` and named `{domain}.config.js`.
-      - Use camelCase for configuration keys.
-      - The application MUST validate all mandatory environment variables at startup and exit gracefully if any are missing.
-      - Configuration files MUST NOT contain any business logic.
+    - path: 'src/config/**/*.config.js'
+      instructions: |
+        ## Configuration Standards
+        - Configuration files MUST be located in `src/config/` and named `{domain}.config.js`.
+        - Use camelCase for configuration keys.
+        - The application MUST validate all mandatory environment variables at startup and exit gracefully if any are missing.
+        - Configuration files MUST NOT contain any business logic.
 
-  - path: '{package.json,README.md,swagger.json}'
-    instructions: |
-      ## Project-Level File Standards
-      - **package.json**: Must include scripts for `start`, `test`, `lint`, and `prettier`. The `engines` field must specify `node >= 18.15.0`.
-      - **README.md**: Must contain a project description, installation steps, a table of all required environment variables, and a list of key `npm` commands.
-      - **swagger.json**: Must be in the root directory and define the complete RESTful API schema. This schema should be exposed via a `/api/docs` endpoint.
+    - path: '{package.json,README.md,swagger.json}'
+      instructions: |
+        ## Project-Level File Standards
+        - **package.json**: Must include scripts for `start`, `test`, `lint`, and `prettier`. The `engines` field must specify `node >= 18.15.0`.
+        - **README.md**: Must contain a project description, installation steps, a table of all required environment variables, and a list of key `npm` commands.
+        - **swagger.json**: Must be in the root directory and define the complete RESTful API schema. This schema should be exposed via a `/api/docs` endpoint.
 chat:
   auto_reply: true
