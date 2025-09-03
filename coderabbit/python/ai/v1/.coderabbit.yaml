@@ -6,6 +6,7 @@ reviews:
     request_changes_workflow: true
     auto_review:
         enabled: true
+        auto_incremental_review: true
         base_branches:
             - '^(?!release).*'
     poem: false
