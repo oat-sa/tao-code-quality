@@ -1,11 +1,15 @@
 # yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
 language: 'en-US'
 tone_instructions: give formal and direct reviews with no humour and any other distracting text, only the necessary
+chat:
+  auto_reply: true
+  art: false
 reviews:
   profile: 'assertive'
   request_changes_workflow: true
   auto_review:
     enabled: true
+    auto_incremental_review: true
   poem: false
   high_level_summary: true
   suggested_labels: true
@@ -142,5 +146,3 @@ reviews:
         - Tests: Write unit tests for all new code. Tests must be isolated and cover both positive and negative scenarios. `tests/` is the required directory name.
         - Locales: Support PO/RDF formats. Use consistent, meaningful message keys/IDs.
         - Views: Use semantic HTML, ensure responsive design (WCAG 2.1 compliance), and optimize assets with a Content Security Policy (CSP).
-chat:
-  auto_reply: true
