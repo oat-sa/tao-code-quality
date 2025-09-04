@@ -4,11 +4,6 @@ tone_instructions: give formal and direct reviews with no humour and any other d
 chat:
   auto_reply: true
   art: false
-knowledge_base:
-  code_guidelines:
-    enabled: true
-    filePatterns:
-      - './CODING_STANDARDS.md'
 reviews:
   profile: 'assertive'
   request_changes_workflow: true
