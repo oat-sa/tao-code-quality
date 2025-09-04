@@ -10,6 +10,8 @@ reviews:
     auto_review:
         enabled: true
         auto_incremental_review: true
+        base_branches:
+            - '^(?!release).*'
     poem: false
     high_level_summary: true
     suggested_labels: true
