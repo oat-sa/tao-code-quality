@@ -1,11 +1,17 @@
 # yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
 language: 'en-US'
 tone_instructions: give formal and direct reviews with no humour and any other distracting text, only the necessary
+chat:
+    auto_reply: true
+    art: false
 reviews:
     profile: 'assertive'
     request_changes_workflow: true
     auto_review:
         enabled: true
+        auto_incremental_review: true
+        base_branches:
+            - '^(?!release).*'
     poem: false
     high_level_summary: true
     suggested_labels: true
@@ -53,5 +59,3 @@ reviews:
               Document the prop types of components using a single JSDoc block, apart from trivial cases.
               In the <style> block, use nesting as much as possible to scope styles within the root template element's selector, and reduce duplication.
               In the <style> block, avoid writing selectors for elements which don't exist in the template; wrapping those selectors with :global() is acceptable.
-chat:
-    auto_reply: true

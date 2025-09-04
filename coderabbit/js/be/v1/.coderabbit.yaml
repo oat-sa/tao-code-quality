@@ -1,11 +1,17 @@
 # yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
 language: 'en-US'
 tone_instructions: give formal and direct reviews with no humour and any other distracting text, only the necessary
+chat:
+  auto_reply: true
+  art: false
 reviews:
   profile: 'assertive'
   request_changes_workflow: true
   auto_review:
     enabled: true
+    auto_incremental_review: true
+    base_branches:
+      - '^(?!release).*'
   poem: false
   high_level_summary: true
   suggested_labels: true
@@ -102,5 +108,3 @@ reviews:
         - **package.json**: Must include scripts for `start`, `test`, `lint`, and `prettier`. The `engines` field must specify `node >= 18.15.0`.
         - **README.md**: Must contain a project description, installation steps, a table of all required environment variables, and a list of key `npm` commands.
         - **swagger.json**: Must be in the root directory and define the complete RESTful API schema. This schema should be exposed via a `/api/docs` endpoint.
-chat:
-  auto_reply: true

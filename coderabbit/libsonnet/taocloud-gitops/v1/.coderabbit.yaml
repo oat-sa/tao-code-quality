@@ -1,11 +1,17 @@
 # yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
 language: 'en-US'
 tone_instructions: give formal and direct reviews with no humour and any other distracting text, only the necessary
+chat:
+    auto_reply: true
+    art: false
 reviews:
     profile: 'assertive'
     request_changes_workflow: true
     auto_review:
         enabled: true
+        auto_incremental_review: true
+        base_branches:
+            - '^(?!release).*'
     poem: false
     high_level_summary: true
     suggested_labels: true
@@ -26,5 +32,3 @@ reviews:
         - label: '⏱️ 60+ Min Review'
           instructions: >-
               Apply this label if the pull request changes more than 1000 lines.
-chat:
-    auto_reply: true
