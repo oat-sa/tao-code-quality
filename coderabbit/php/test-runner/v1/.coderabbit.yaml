@@ -4,7 +4,7 @@ tone_instructions: give formal and direct reviews with no humour and any other d
 chat:
     auto_reply: true
 reviews:
-    profile: 'assertive'
+    profile: 'chill'
     request_changes_workflow: true
     auto_review:
         enabled: true

@@ -5,7 +5,7 @@ chat:
     auto_reply: true
     art: false
 reviews:
-    profile: 'assertive'
+    profile: 'chill'
     request_changes_workflow: true
     auto_review:
         enabled: true
