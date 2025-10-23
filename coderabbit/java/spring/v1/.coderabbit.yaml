@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
 language: 'en-US'
-tone_instructions: give formal and direct reviews with no humour and any other distracting text, only the necessary
+tone_instructions: 'give formal and direct reviews with no humour and any other distracting text, only the necessary'
 chat:
   auto_reply: true
   art: false
