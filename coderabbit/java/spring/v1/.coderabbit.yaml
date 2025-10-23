@@ -125,7 +125,7 @@ reviews:
         - Contains entities, value objects, and domain events only.
         - No dependencies on Spring, frameworks, or infrastructure.
         - Entities should encapsulate behavior and invariants.
-        - Use `@Value` or immutable patterns for Value Objects.
+        - Use immutable patterns for Value Objects (explicit constructors, final fields). Lombok `@Value` may be used as it's compile-time only.
         - Domain events should be POJOs with clear purpose.
         - Domain services should express business logic that doesn’t belong to entities.
 
