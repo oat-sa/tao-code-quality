@@ -41,7 +41,7 @@ reviews:
               Avoid introducing new global mutations; keep side effects explicit and localized.
               Controllers must delegate to services, contain no business logic, and follow Single Responsibility Principle.
 
-        - path: '**/*.{spec,test}.{js,ts,tsx}'
+        - path: '**/*.{spec,test}.js'
           instructions: |
               Tests must be deterministic; avoid real timers, random data, and network calls without stubbing.
               Assert behavior rather than internal implementation details; prefer user-visible outcomes.
