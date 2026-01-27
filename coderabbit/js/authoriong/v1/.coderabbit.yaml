@@ -61,11 +61,6 @@ reviews:
               New dependencies must have a clear justification and minimal scope; avoid adding large libraries for small features.
               Do not remove scripts or engines without explaining impact on build/release tooling.
 
-        - path: '**/*.php'
-          instructions: |
-              When outputting HTML/JS, ensure data is escaped/encoded; avoid injecting raw values into templates.
-              Keep PHP logic minimal in FE extensions; prefer configuration and thin glue code.
-
         - path: '**/*.{js,svelte}'
           instructions: |
               Prevent deeply nested callbacks; use async/await or Promises with flat structure.
