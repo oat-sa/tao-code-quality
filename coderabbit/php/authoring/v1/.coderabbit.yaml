@@ -29,6 +29,14 @@ reviews:
     - path: '**'
       instructions: |
         ## General Project Standards
+        ### Commit & PR Rules
+        - Branch naming MUST follow: `fix|feat/{TICKET}/short-description`.
+        - Commits MUST use Conventional Commits (e.g., `fix: summary`).
+        - PRs MUST target `develop`.
+        - PR description MUST be `.notes/pr-description/{ticket}.md`.
+        - PRs MUST link Jira/GitHub issues, list impacted services, and include test evidence plus UI screenshots.
+        - PR creation MUST include reviewers: `tikhanovichA`, `KirylHatalski`, `pnal`, `Karol-Stelmaczonek`.
+
         ### Security & Performance
         - Implement proper input validation and sanitization.
         - Use parameterized queries to prevent SQL injection.
@@ -148,3 +156,4 @@ reviews:
         - Tests: Write unit tests for all new code. Tests must be isolated and cover both positive and negative scenarios. `tests/` is the required directory name.
         - Locales: Support PO/RDF formats. Use consistent, meaningful message keys/IDs.
         - Views: Use semantic HTML, ensure responsive design (WCAG 2.1 compliance), and optimize assets with a Content Security Policy (CSP).
+        - Views (JS): Review source files only; do not request edits to minified bundles and do not treat missing minified updates as blocking.
