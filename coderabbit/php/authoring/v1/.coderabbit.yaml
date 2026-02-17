@@ -30,12 +30,10 @@ reviews:
       instructions: |
         ## General Project Standards
         ### Commit & PR Rules
-        - Branch naming MUST follow: `fix|feat/{TICKET}/short-description`.
         - Commits MUST use Conventional Commits (e.g., `fix: summary`).
         - PRs MUST target `develop`.
         - PR description MUST be `.notes/pr-description/{ticket}.md`.
         - PRs MUST link Jira/GitHub issues, list impacted services, and include test evidence plus UI screenshots.
-        - PR creation MUST include reviewers: `tikhanovichA`, `KirylHatalski`, `pnal`, `Karol-Stelmaczonek`.
 
         ### Security & Performance
         - Implement proper input validation and sanitization.
