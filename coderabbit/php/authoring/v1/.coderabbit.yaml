@@ -92,8 +92,8 @@ reviews:
         
         ### Documentation
         - Write self-documenting code with meaningful variable and method names.
-        - All classes MUST have DocBlock headers with license information.
-        - All public methods MUST have proper @param and @return annotations.
+        - All classes MUST have DocBlock headers with license information, except classes under tests/ (e.g., tests/**).
+        - All public methods MAY have proper @param and @return annotations.
         
         ### Type System & Error Handling
         - Use strict types `declare(strict_types=1);` in all PHP files.
