@@ -36,36 +36,58 @@ reviews:
     path_instructions:
         - path: '**/*.py'
           instructions: |
-              Prioritize readability over cleverness—follow PEP 20 (The Zen of Python).
-              Ensure all code adheres to PEP 8.
-              Use f-strings for string formatting and include type hints throughout the code.
+              Follow PEP 8 and prioritize readability over cleverness (PEP 20).
+              Follow PEP 257 docstring conventions using Google style.
+              Keep maximum line length at 100 characters.
+              Use Ruff conventions for linting, formatting, and import sorting.
+              Place imports at the top of the file and keep them sorted; use lazy imports only when required.
+              Import sibling modules directly (for example, `from .module import resource`).
+              Import external modules by package name.
+              Keep package and module dependencies acyclic.
+              Use f-strings for string formatting.
               Always use `with` statements when working with files or resources.
-              Prefer `pathlib` over `os.path`, and use `click` or `typer` instead of `argparse` or `sys.argv`.
-              Avoid using `print()`; use structured logging instead (e.g., `loguru`, JSON format preferred).
-              Do not hardcode configuration values.
+              Prefer `pathlib` over `os.path`.
+              Prefer the standard `logging` module over `print()` for tracing; `print()` is allowed for immediate feedback when necessary.
+              Use environment variables instead of hardcoded configuration values.
+              Never hardcode real secrets or keys.
               Do not log or expose sensitive or personally identifiable information.
-              Use meaningful and consistent naming conventions.
-              Ensure each module or function has a single responsibility and is logically organized.
-              Eliminate duplicated logic by abstracting common functionality into utilities.
-              Follow the project's defined dependency hierarchy to avoid cyclic imports.
-              Avoid indirect imports; use fully qualified paths for sibling module access.
-              File and folder names must follow `snake_case`.
-              Include Google-style docstrings for all public functions and methods, with Args, Returns, Raises, and Examples when applicable.
-              Update project documentation (README, references) when adding or modifying functionality.
-              Code should follow DRY, KISS, and SOLID principles.
-              Code should follow development best practices.
+              In tests and examples, use only controlled domains such as `local.test` or `test.local`.
+              Use naming conventions by semantic type: `PascalCase` for classes, `UPPER_SNAKE_CASE` for constants, and `snake_case` for variables, functions, modules, files, folders, and decorators.
+              Exceptions to these rules are acceptable when explicitly documented in a code comment, docstring, or pragma comment (for example, `# pylint: disable=...`).
         - path: 'src/**/*.py'
           instructions: |
               Use `__init__.py` for clean exports via `__all__`.
               Use precise type annotations for all function arguments and return types.
+              For public functions and methods, include Google-style docstrings with Args, Returns/Yields, and Raises when applicable.
+              For classes, document constructor parameters in the class docstring.
+              Do not require docstrings for dunder methods.
+              Ensure each module or function has a single responsibility and is logically organized.
+              Eliminate duplicated logic by abstracting common functionality into utilities.
               Add unit or integration tests for new or updated logic in the `tests/` directory, mirroring the source structure.
         - path: 'tests/**/*.py'
           instructions: |
-              Tests files must mirror the source structure.
+              Test files must mirror the source structure.
               Test files must follow the `test_<module>.py` naming pattern.
-              Mock external services or dependencies.
+              Mock external services or dependencies when needed.
+              Prefer `unittest.mock.patch` over `monkeypatch`.
+              Prefer mocked time over `time.sleep()`.
               Annotations and type hints are not needed in test files.
               Code duplication in tests is accepted when it serves idempotency.
+              Do not access private members directly in tests unless unavoidable.
+              Use `caplog` to validate logging behavior when applicable.
+        - path: '**/*.ipynb'
+          instructions: |
+              Apply looser and pragmatic review standards for notebook workflows.
+              Favor clarity and reproducibility, but allow exploratory and iterative code.
+              Prefer fully qualified imports in notebooks.
+              Relative imports are acceptable only for direct sibling modules when they are known to work in the notebook execution context.
+              `print()` for immediate feedback is acceptable.
+              Type hints and docstrings are optional unless a notebook cell defines reusable library-like code.
+              Some setup duplication across cells is acceptable when it improves readability and execution independence.
+              Notebook magics are acceptable when they improve interactivity or reproducibility.
+              Prefer concise and actionable review feedback over strict style enforcement.
+              Do not hardcode real secrets or keys.
+              Do not log or expose sensitive or personally identifiable information.
         - path: 'requirements.txt'
           instructions: |
               This file is auto-generated by `uv` and should not be manually edited.
