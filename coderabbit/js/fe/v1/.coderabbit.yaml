@@ -50,6 +50,7 @@ reviews:
               Classes, Functions and Methods must be concise and have descriptive names.
               Code should follow DRY principle, and composition over inheritance.
               Code should follow development best practices.
+              All texts should be internationalized; avoid hardcoded strings in the codebase.
 
         - path: '**/*.svelte'
           instructions: |
