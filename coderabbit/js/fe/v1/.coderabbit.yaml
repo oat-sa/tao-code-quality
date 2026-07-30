@@ -39,6 +39,7 @@ reviews:
           instructions: |
               Prefer ES modules: use import syntax, avoid require; configure type: module in package.json.
               Controllers must delegate to services, contain no business logic, and follow Single Responsibility Principle.
+              Never call __() in module-level maps or constants (e.g. { key: __('...') }); locale is set after import. Use a lookup function that calls __('...') at runtime instead (e.g. export function getRoleLabel(key) { return { admin: __('Admin') }[key]; }).
 
         - path: '**/*.{js,svelte}'
           instructions: |
